@@ -122,7 +122,7 @@ And the position of the vehicle with respect to center is calculated by 0.5 * (l
 
 I implemented this step in 12th cell in the function `fillPolyLane()`.  Here is an example of my result on a test image:
 
-![alt text][image6]
+![alt text][image7]
 
 ---
 
