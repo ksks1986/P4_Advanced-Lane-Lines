@@ -69,6 +69,9 @@ I used a combination of color and gradient thresholds(abs, mag, direction) to ge
 Here's an example of my output for this step.  (note: this is not actually from one of the test images)
 
 ![alt text][image3]
+
+
+This is combined image.
 ![alt text][image4]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
