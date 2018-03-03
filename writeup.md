@@ -65,7 +65,7 @@ To demonstrate this step, I will describe how I apply the distortion correction 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  
 Provide an example of a binary image result.
 
-I used a combination of color and gradient thresholds(abs, mag, direction) to generate a binary image (thresholding steps at 5,6,7,8th cells in `./AdvancedLaneLines.ipynb`).  
+I used a combination of color(HLS, Luv, Lab) to generate a binary image (thresholding steps at 8,9,10,11th cells in `./AdvancedLaneLines.ipynb`).  
 Here's an example of my output for this step.  (note: this is not actually from one of the test images)
 
 ![alt text][image3]
@@ -87,8 +87,8 @@ I chose the hardcode the source and destination points in the following manner:
 
     (x1, y1) = (275, 670)
     (x2, y2) = (1030, y1)
-    (x3, y3) = (670, 440)
-    (x4, y4) = (605, y3)
+    (x3, y3) = (725, 480)
+    (x4, y4) = (550, y3)
 
     src = np.float32([[x1,y1],[x2,y2],[x3,y3],[x4,y4]])        
     dst = np.float32([[340,ysize], [940, ysize], [940, 0], [340, 0]])
@@ -100,8 +100,8 @@ This resulted in the following source and destination points:
 |:-------------:|:-------------:| 
 | 275, 670      | 340, 720        | 
 | 1030, 670      | 940, 720      |
-| 670, 440     | 940, 0      |
-| 605, 440      | 340, 0        |
+| 725, 480     | 940, 0      |
+| 550, 480      | 340, 0        |
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and 
 its warped counterpart to verify that the lines appear parallel in the warped image.
@@ -123,7 +123,7 @@ And the position of the vehicle with respect to center is calculated by 0.5 * (l
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in 12th cell in the function `fillPolyLane()`.  Here is an example of my result on a test image:
+I implemented this step in 15th cell in the function `fillPolyLane()`.  Here is an example of my result on a test image:
 
 ![alt text][image7]
 
@@ -145,4 +145,6 @@ Here's a [link to my video result](./project_video_output.mp4)
 Here is techniques I used. Region of interest, averaging curve and initial value for seaching lane line
 because they make lane detection more robust.
 It's difficult to detect line when the car is in the boundary between sun and shade.
+When the other car is overlapping the lane line, it's difficult to detect line too.
+In this case, to avoid miss-detection, sanity check is important.(for example, comparing the calculated curve with previous one)
 
